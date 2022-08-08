@@ -25,7 +25,7 @@ for (let item of fontsSize) {
         bookContent.classList.remove("book_fs-small");
     }
     
-        return false;
+    preventDefault;
     }
 }
 for (let item of colorControlFont) {
@@ -52,7 +52,7 @@ for (let item of colorControlFont) {
             bookContent.classList.remove("book_color-black");
         }
                 
-            return false;
+        preventDefault;
 
     }
 }
@@ -81,7 +81,7 @@ for (let item of colorControlBg ) {
             bookContent.classList.add("book_bg-white");
         }
                 
-            return false;
+        preventDefault;
 
     }
 }
