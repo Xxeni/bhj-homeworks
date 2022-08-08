@@ -17,6 +17,13 @@ class Game {
   }
 
   registerEvents() {
+
+    document.addEventListener('keyup', (event) => {   
+      let currentKey = event.key.charCodeAt();
+      let currentSym = this.currentSymbol.textContent.charCodeAt();
+      (currentKey === currentSym) ? this.success() : this.fail();
+        }) 
+        
     /*
       TODO:
       Написать обработчик события, который откликается
