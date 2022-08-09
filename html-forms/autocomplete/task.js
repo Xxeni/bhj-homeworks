@@ -69,15 +69,6 @@ class Autocomplete {
 
   getMatches( text ) {
 
-    let mass =[]
-    let obj
-    for (let item of this.input.options) {
-      if (item.textContent.includes(text)) {
-      obj = {text: item.textContent,
-      value: item.value};
-      mass.push(obj);
-      }
-    }
 
     const optionElements = [...this.input.options];
     const filterArray = optionElements.filter((el) => el.text.includes(text));
