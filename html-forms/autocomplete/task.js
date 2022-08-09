@@ -78,6 +78,18 @@ class Autocomplete {
       mass.push(obj);
       }
     }
+
+    const optionElements = [...this.input.options];
+    const filterArray = optionElements.filter((el) => el.text.includes(text));
+    return filterArray.reduce((acc, prev) => {
+      const obj = {
+        text: prev.text,
+        value: prev.value,
+      };
+      acc.push(obj);
+      return acc;
+    }, []);
+
     /*
       TODO: этот метод нужно дописать
       text - фраза, которую вводят в поле поиска
