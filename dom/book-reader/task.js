@@ -1,87 +1,50 @@
-let fontsSize = document.querySelectorAll(".font-size");
-let bookContent = document. querySelector(".book");
-let colorControlFont = document.querySelector(".book__control_color").children
-let colorControlBg = document.querySelector(".book__control_background").children
+let divBook = document.querySelector("div.book");
+let text = document.querySelector(".book__control_color");
+let background = document.querySelector(".book__control_background");
 
+let fontChange = event => {
+    let target = event.target;
+    if (target.classList.contains("font-size")) {
+        event.preventDefault();
+        document.querySelector(".font-size_active").classList.remove("font-size_active");
+        target.classList.add("font-size_active");
 
-for (let item of fontsSize) {
-    item.onclick = () => {
-    document.querySelector(".font-size_active").classList.remove("font-size_active")
-        item.classList.add("font-size_active");
-        let attributeFs = item.getAttribute("data-size");
-    
-    if (attributeFs === "big") {
-        bookContent.classList.remove("book_fs-small");
-        bookContent.classList.add("book_fs-big");
-    }
-
-    if (attributeFs === "small") {
-        bookContent.classList.remove("book_fs-big");
-        bookContent.classList.add("book_fs-small");
-    }
-
-    if (attributeFs === null) {
-        bookContent.classList.remove("book_fs-big");
-        bookContent.classList.remove("book_fs-small");
-    }
-    
-    preventDefault;
-    }
-}
-for (let item of colorControlFont) {
-    item.onclick = () => {
-        document.querySelector(".color_active").classList.remove("color_active");
-        item.classList.add("color_active")
-        let attributeFs = item.getAttribute("data-text-color");
-
-        if (attributeFs === "black") {
-            bookContent.classList.remove("book_color-gray");
-            bookContent.classList.remove("book_color-whitesmoke");
-            bookContent.classList.add("book_color-black");
+        if (target.dataset.size !== undefined) {
+            divBook.classList.remove("font-size_small");
+            divBook.classList.remove("font-size_big");
+            divBook.classList.add(target.classList[1]);           
+        } else {
+            divBook.classList.remove("font-size_small");
+            divBook.classList.remove("font-size_big");
         }
-    
-        if (attributeFs === "gray") {
-            bookContent.classList.add("book_color-gray");
-            bookContent.classList.remove("book_color-whitesmoke");
-            bookContent.classList.remove("book_color-black");
-        }
-    
-        if (attributeFs === "whitesmoke") {
-            bookContent.classList.remove("book_color-gray");
-            bookContent.classList.add("book_color-whitesmoke");
-            bookContent.classList.remove("book_color-black");
-        }
-                
-        preventDefault;
+    }
 
+    if (target.classList.contains("color")) {
+        event.preventDefault();
+        let parentControl = target.parentElement;
+
+        parentControl.querySelector(".color_active").classList.remove("color_active");
+        target.classList.add("color_active");
+
+        divBook.classList.remove("color_white");
+        divBook.classList.remove("color_gray");
+        divBook.classList.remove("color_gray_text");
+        divBook.classList.remove("color_black");
+        divBook.classList.remove("color_whitesmoke");
+
+        if (parentControl === text) {
+            if (target.dataset.color !== undefined) divBook.classList.add(target.classList[1]);
+            let bro = background.querySelector(".color_active");
+            //if (target === bro) return;
+            if (bro.dataset.color !== undefined) divBook.classList.add(bro.classList[1]);
+        } else {
+            if (target.dataset.color !== undefined) divBook.classList.add(target.classList[1]);
+            let bro = text.querySelector(".color_active");
+            //if (target === bro) return;
+            if (bro.dataset.color !== undefined) divBook.classList.add(bro.classList[1]);
+        }
+        
     }
 }
 
-for (let item of colorControlBg ) {
-    item.onclick = () => {
-        document.querySelector(".color_active").classList.remove("color_active");
-        item.classList.add("color_active")
-        let attributeFs = item.getAttribute("data-bg-color");
-
-        if (attributeFs === "black") {
-            bookContent.classList.remove("book_bg-gray");
-            bookContent.classList.add("book_bg-black");
-            bookContent.classList.remove("book_bg-white");
-        }
-    
-        if (attributeFs === "gray") {
-            bookContent.classList.add("book_bg-gray");
-            bookContent.classList.remove("book_bg-black");
-            bookContent.classList.remove("book_bg-white");
-        }
-    
-        if (attributeFs === "white") {
-            bookContent.classList.remove("book_bg-gray");
-            bookContent.classList.remove("book_bg-black");
-            bookContent.classList.add("book_bg-white");
-        }
-                
-        preventDefault;
-
-    }
-}
+window.addEventListener("click", fontChange);
